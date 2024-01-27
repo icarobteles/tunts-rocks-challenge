@@ -41,7 +41,7 @@ export class Classroom implements IClassroom {
 
   calculateAverage(student: Student): number {
     const sum = student.grades.reduce((acc, curr) => acc + curr, 0);
-    return Math.ceil(sum / (student.grades.length * 10));
+    return sum / (student.grades.length * 10);
   }
 
   calculateAbsencePercentage(student: Student): number {
@@ -72,7 +72,7 @@ export class Classroom implements IClassroom {
     const average = this.calculateAverage(student);
 
     if (situation === StudentSituation.FINAL_EXAM) {
-      return 10 - average;
+      return Math.ceil(100 - average * 10);
     }
 
     return 0;

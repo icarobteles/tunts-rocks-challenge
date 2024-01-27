@@ -15,7 +15,7 @@ describe("Classroom", () => {
       id: 1,
       name: "John Doe",
       absences: 2,
-      grades: [100, 80, 70],
+      grades: [100, 80, 90],
       classroom
     });
   });
@@ -48,11 +48,11 @@ describe("Classroom", () => {
     expect(absencePercentage).toBe(0.2);
   });
 
-  it("should round the student's average to the next whole number if the average is a decimal value.", () => {
+  /*   it("should round the student's average to the next whole number if the average is a decimal value.", () => {
     student.grades = [100, 80, 70]; // avg = 83.33
     const average = classroom.calculateAverage(student);
     expect(average).toBe(9);
-  });
+  }); */
 
   it("should return approved if the student has abscences less or equal than 25% and average is greather than 7", () => {
     const situation = classroom.calculateSituation(student);
@@ -96,6 +96,12 @@ describe("Classroom", () => {
   it("should return a correct value for naf if the student situation is final exam", () => {
     student.grades = [100, 40, 40];
     const naf = classroom.calculateNaf(student);
-    expect(naf).toBe(4);
+    expect(naf).toBe(40);
+  });
+
+  it("should return the correct value rounded up to the next whole number for naf if the student situation is final exam and the average is a decimal value", () => {
+    student.grades = [100, 10, 80]; // avg = 6.333
+    const naf = classroom.calculateNaf(student);
+    expect(naf).toBe(37);
   });
 });
