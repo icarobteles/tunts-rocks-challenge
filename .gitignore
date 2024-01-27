@@ -40,3 +40,6 @@ lerna-debug.log*
 
 # Docker Compose
 docker-compose.yml
+
+*credentials.json
+*token.json
